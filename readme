@@ -1,0 +1,261 @@
+Hello pal
+
+This is the story all about how my JavaScript got turned upside down
+
+please stop
+
+
+
+Gonnae assume ye know basically nothing cos then I won't miss anything.
+
+HTML is the skeleton
+
+CSS is the skin
+
+JS is the functionality
+
+
+
+
+
+
+
+HTML:
+
+Pretty basic stuff, in HTML you'll work mostly with "div"s, which is just a division of the page.
+You can give them a class name, or multiple class names, and an id. These are selected for things
+like CSS and JS so that the program knows which div to work on.
+
+<div class="myFirstDiv" id="myFirstId></div>
+
+That's what it looks like. The classnames and id are optional, but if they're not there you won't be
+able to do much with the div.
+
+There are also some pre-set "divs" labelled with things like <h1></h1> or <p></p>
+
+I'll put examples in the actual files.
+
+When you first start off you'll probably hard code stuff into the divs of HTML like this:
+<div class="example">Hi I'm an example div</div>
+
+The bit inside the tags will show on the page.
+
+Later on though you'll generate divs and their content using JS, which is a lot better overall
+but tricky to start with.
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSS:
+
+The core of CSS is using selectors.
+
+In a CSS page you'll "select" something in the html, whether you've hard coded it in or generated
+it via JS, and give it properties such as height, width, background color, etc etc.
+
+The pre-set "divs" are selected just by putting their letter:
+
+p{
+    height: 50;
+    color: red;
+}
+
+
+So every paragraph on your page will have those properties.
+
+any "class" that you've assigned can be selected by using a dot before the name:
+
+.myFirstDiv{
+    height: 200;
+    font-family: comic-sans;
+}
+
+
+so your div with the class of myFirstDiv (Case sensitive) will have those properties.
+these properties take priority over the pre-set ones. So let's say you have a paragraph with the
+class myFirstParagraph somwhere in your page:
+
+<p class="myFirstParagraph id="paragraphId>Hi I'm Craig's first paragraph</p>
+
+and in your css file you have:
+
+
+p{
+    height: 50;
+    color: red;
+}
+
+and
+
+.myFirstParagraph{
+    height: 200;
+    font-family: comic-sans
+}
+
+The height in the .myFirstParagraph dominates the height in the p, so it'd end up with a height of 200;
+
+
+If a div has an id that you've set, you select this with the hash:
+
+#paragraphId{
+    height: 300;
+}
+
+Anything in an id selector dominates everything else, so now it'd have a height of 300.
+
+
+This gives you a bit of flexibility, so if you had ten <p>aragraphs on your page, wanted 9 to be red
+but one to be blue, you could set them all red and then dominate it with a class or an id in the one
+you want to be blue
+
+The hardest thing in CSS is making a layout which isn't absolutely fucked. There's a relatively new
+functionality in CSS called "grid" but I'll do a separate one on that if you need it.
+
+There are good documents for CSS, so if you want to set the width or a margin at the bottom or something
+it's easy to find out how, so I won't exhaust it here.
+
+
+
+
+
+
+
+
+JS:
+
+JS can be a tricky cunt, so I'll try to cover the bits I had trouble with. Again I'll do a few
+examples in the actual files anyway but as a reference:
+
+
+functions:
+
+Functions are basically little chunks of code that actually do something. You usually make them
+first and then call them later.
+
+making the function:
+
+function myFirstFunction(){
+    alert("Hello this is my first function working normally")
+};
+
+
+calling the function:
+myFirstFunction();
+
+JS reads the page from top to bottom, so it'll create the function and then call/activate it.
+
+The brackets after the function can hold parameters that the function might use. Sometimes
+a function, like above, doesn't need any parameters, but usually it will.
+
+example:
+
+function createFullName(firstName, secondName){
+    let fullName = (firstName + secondName);
+    return fullName;
+}
+
+This function will take in a first name, a second name, join them together, and then "return" the 
+full name to whichever other function called on it.
+
+if you then put this somewhere lower on the page:
+
+createFullName("Jerald", "Pierney");
+then it would make the fullName "Jerald Pierney" inside the function.
+It wouldn't then actually do anything with it, as fullName only exists within that function.
+
+If however you had a function like this too:
+
+function alertFullName(){
+    let completeName = createFullName("Creg", "Tiemrey");
+    alert(completeName);
+    }
+
+then this function activates the first one and sends the names to be joined
+the first function "returns" the result
+the second function creates a variable equal to whatever that result is
+it then does a window alert using the new variable it made
+
+It seems easy now, or maybe not, but it took me a while to get to grips with what "Return" meant most
+of the time.
+
+
+
+The next major part of JS is Objects, as in Object Oriented Programming and for a longish time you'll
+probably be like "what's actually the point of these?" but as you advance you'll use them more and more.
+
+Inside an object there are key: value pairs held inside curly brackets and separated with commas
+
+JavaScript objects used to be much much harder to create, but as of a big update a few years ago
+called ES6 they are much simpler and take the following form:
+
+class Book {
+    constructor(title, author, year){
+        this.title = title,
+        this.author = author,
+        this.year = year
+    }
+}
+
+here we've made a Book class object. Right now it's basically a template for any other "instances"
+of Book objects we want to make. It makes it easier to make a lot of "Book" objects.
+
+Once we have the template we then just "instantiate" a new book and pass in some variables like
+we did with the functions earlier.
+
+let book1 = new Book("The Hobbit", "Tolkien", "1922")
+
+let book2 = new Book("How to cook bacon", "Chefman", "2021")
+
+the Book template will send those properties into its constructor and construct the new objects.
+
+Another example would be from a game maybe, you'd have a Monster object class template:
+
+class Monster {
+    constructor(name, hp, speed, dmg, defence,){
+        this.name = name,
+        this.hp = hp,
+        this.speed = speed,
+        this.dmg = dmg,
+        this.defence = defence
+    }
+}
+
+If you're asking why we need to do this.name = name, it's basically for when you instantiate 
+a new monster, it means that the name of THIS monster is equivalent to whatever parameter was fed in in the "name"
+position.
+
+let kobold = new Monster("kobold", 10, 12, 8, 3)
+let dragon = new Monster("dragon", 100, 50, 50, 50)
+
+it makes it much faster when you might have lots of the same thing but with different properties, such as users
+on a social media side or subscribers to your app, etc etc.
+
+
+
+Nice resources to start with
+
+
+HTML: Traversy Media html for abso beginners = https://www.youtube.com/watch?v=UB1O30fR-EE
+
+CSS Traversy media css for abso beginners = https://www.youtube.com/watch?v=yfoY53QXEnI
+
+JS :  Net Ninja Modern JS tutorial link = https://www.youtube.com/playlist?list=PL4cUxeGkcC9haFPT7J25Q9GRB_ZkFrQAc
+
+
+
+
+
+
+
+
+
+

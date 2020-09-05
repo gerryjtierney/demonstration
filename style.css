@@ -1,0 +1,29 @@
+body{
+    background-color: rgb(177, 34, 34);
+}
+
+
+.parentDiv{
+    width: 200px;
+    height: 400px;
+    background-color: rgb(27, 27, 128);
+}
+
+.childDiv{
+    width: 150px;
+    height: 50px;
+    background-color: rgb(55, 121, 55);
+    margin-bottom: 10px;
+}
+
+#child3{
+    width: 150px;
+    height: 50px;
+    background-color: rgb(121, 55, 118);
+    margin-bottom: 10px;
+}
+
+/*Here hopefully you can see the order that things are done in and the priority they are given. 
+child3's colour property dominates the childDiv colour property because it's an id versus just a class
+similarly the class colours dominate the "pre-set" body div selection
+*/
